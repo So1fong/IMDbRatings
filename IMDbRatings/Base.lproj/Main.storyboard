@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="yla-nY-iLv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nwb-xx-VuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="4Y3-0k-71S" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Fv-yC-rCt">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -23,6 +22,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="SJM-EO-P0Q"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nwb-xx-VuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1534" y="133"/>
         </scene>
@@ -88,7 +88,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Топ" id="PPW-Tk-FYQ"/>
                     <connections>
-                        <outlet property="topRatedTableView" destination="ilo-3r-njZ" id="UIY-fV-66Z"/>
+                        <outlet property="topRatedTableView" destination="ilo-3r-njZ" id="ehf-DI-bJY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

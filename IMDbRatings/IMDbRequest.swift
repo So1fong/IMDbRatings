@@ -8,18 +8,25 @@
 
 import Foundation
 
-struct filmDescription
+protocol RequestDelegate
 {
-    var poster: String = ""
+    func reloadTableView()
+}
+
+struct FilmDescription
+{
+    var poster: String = "http://image.tmdb.org/t/p/w200/"
     var title: String = ""
-    var rate: String = ""
+    var rate: Double = 0.0
     var overwiev: String = ""
 }
 
-var topRatedFilms: [filmDescription] = [filmDescription()]
+var topRatedFilms: [FilmDescription] = [FilmDescription()]
 
 class IMDbRequest
 {
+    var requestDelegate: RequestDelegate?
+    
     func topRatedRequest(page: Int)
     {
         let apiKey = "08aab06166b71e9d8236e125b6b285ef"
@@ -45,13 +52,26 @@ class IMDbRequest
             do
             {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                print(json)
+                //print(json)
                 let page = json
+                var resultDictionary: NSDictionary
                 let resultsArray = page.value(forKey: "results") as! NSArray
-                for 
-                let resultDictionary = results[i] as! NSDictionary
-                topRatedFilms[0].title = result.value(forKey: "title") as! String
-                print(topRatedFilms[0].title)
+                //print("RESULTS ARRAY \(resultsArray) COUNT \(resultsArray.count)")
+                for i in 0..<resultsArray.count
+                {
+                    topRatedFilms.append(FilmDescription())
+                    resultDictionary = resultsArray[i] as! NSDictionary
+                    topRatedFilms[i].poster += resultDictionary.value(forKey: "poster_path") as! String
+                    topRatedFilms[i].title = resultDictionary.value(forKey: "title") as! String
+                    
+                    topRatedFilms[i].rate = resultDictionary.value(forKey: "vote_average") as! Double
+                    topRatedFilms[i].overwiev = resultDictionary.value(forKey: "overview") as! String
+                    print(topRatedFilms[i].poster)
+                    print(topRatedFilms[i].title)
+                    print(topRatedFilms[i].rate)
+                    print(topRatedFilms[i].overwiev)
+                }
+                self.requestDelegate?.reloadTableView()
                 //if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
                 //{
                     //self.alertControllerDelegate?.showAuthenticationAlertController()
