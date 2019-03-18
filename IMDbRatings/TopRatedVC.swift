@@ -79,7 +79,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         topRatedTableView.delegate = self
         topRatedTableView.dataSource = self
         request.topRatedRequest(page: 1)
-        topRatedTableView.rowHeight = 150
+        topRatedTableView.rowHeight = 300
     }
     
 
