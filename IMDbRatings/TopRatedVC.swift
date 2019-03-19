@@ -69,16 +69,14 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         //topRatedTableViewHeightConstraint.constant = topRatedTableView.contentSize.height
         
         //topRatedTableView.rowHeight = topRatedTableView.contentSize.height
-        topRatedTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
-        
-        //tableViewHeightConstraint.constant = tableView.contentSize.height
+        //topRatedTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
         return cell
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return UITableView.automaticDimension
-    }
+    //func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
+    //{
+    //    return UITableView.automaticDimension
+    //}
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
