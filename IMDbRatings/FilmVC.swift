@@ -10,7 +10,6 @@ import UIKit
 
 class FilmVC: UIViewController
 {
-
     var removeButton = UIBarButtonItem()
     var addButton = UIBarButtonItem()
     

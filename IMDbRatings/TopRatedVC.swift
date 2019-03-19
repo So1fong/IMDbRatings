@@ -36,6 +36,7 @@ extension UIImageView
 }
 
 let request: IMDbRequest = IMDbRequest()
+var myIndex = 0
 
 class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
 {
@@ -77,6 +78,11 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        myIndex = indexPath.row
     }
     
     func setLabelHeight(label: UILabel, text: String) -> CGFloat
