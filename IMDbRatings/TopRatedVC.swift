@@ -58,7 +58,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
             {
                 cell.posterImageView.downloadedFrom(url: url)
             }
-            cell.titleLabel.text = topRatedFilms[indexPath.row].title
+            cell.titleLabel.text = String(indexPath.row+1) + ". " + topRatedFilms[indexPath.row].title
             //cell.titleLabel.sizeToFit()
             cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[indexPath.row].rate)
         }

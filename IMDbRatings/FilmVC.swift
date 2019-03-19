@@ -27,7 +27,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.descriptionLabel.text = topRatedFilms[myIndex].overwiev
         cell.titleLabel.text = topRatedFilms[myIndex].title
         cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
-        filmTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
+        //filmTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         return cell
