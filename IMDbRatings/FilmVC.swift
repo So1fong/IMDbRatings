@@ -20,7 +20,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmTableViewCell
-        print(topRatedFilms[myIndex].poster)
         if let url = URL(string: topRatedFilms[myIndex].poster)
         {
             cell.posterImageView.downloadedFrom(url: url)
@@ -30,6 +29,11 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
         filmTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableView.automaticDimension
     }
     
     var removeButton = UIBarButtonItem()
