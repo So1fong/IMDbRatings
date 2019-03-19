@@ -8,14 +8,38 @@
 
 import UIKit
 
-class FilmVC: UIViewController
+class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    @IBOutlet weak var filmTableView: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmTableViewCell
+        print(topRatedFilms[myIndex].poster)
+        if let url = URL(string: topRatedFilms[myIndex].poster)
+        {
+            cell.posterImageView.downloadedFrom(url: url)
+        }
+        cell.descriptionLabel.text = topRatedFilms[myIndex].overwiev
+        cell.titleLabel.text = topRatedFilms[myIndex].title
+        cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
+        filmTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
+        return cell
+    }
+    
     var removeButton = UIBarButtonItem()
     var addButton = UIBarButtonItem()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        filmTableView.delegate = self
+        filmTableView.dataSource = self
         removeButton = UIBarButtonItem(title: "Remove", style: .plain, target: self, action: #selector(removeButtonTapped))
         removeButton.tintColor = UIColor.red
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtonTapped))

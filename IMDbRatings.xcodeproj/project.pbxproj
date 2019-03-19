@@ -17,6 +17,7 @@
 		D863443A223FFEFC00ED162E /* IMDbRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634439223FFEFC00ED162E /* IMDbRequest.swift */; };
 		D863443C22404D6A00ED162E /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D863443B22404D6A00ED162E /* FavoritesVC.swift */; };
 		D881A04A2240CADE00CBFBE4 /* FilmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881A0492240CADE00CBFBE4 /* FilmVC.swift */; };
+		D881A04C2240D93E00CBFBE4 /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D8634439223FFEFC00ED162E /* IMDbRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRequest.swift; sourceTree = "<group>"; };
 		D863443B22404D6A00ED162E /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		D881A0492240CADE00CBFBE4 /* FilmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmVC.swift; sourceTree = "<group>"; };
+		D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */,
 				D863443B22404D6A00ED162E /* FavoritesVC.swift */,
 				D881A0492240CADE00CBFBE4 /* FilmVC.swift */,
+				D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */,
 				D8634427223FEC6600ED162E /* Main.storyboard */,
 				D863442A223FEC6700ED162E /* Assets.xcassets */,
 				D863442C223FEC6700ED162E /* LaunchScreen.storyboard */,
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D881A04C2240D93E00CBFBE4 /* FilmTableViewCell.swift in Sources */,
 				D881A04A2240CADE00CBFBE4 /* FilmVC.swift in Sources */,
 				D863443C22404D6A00ED162E /* FavoritesVC.swift in Sources */,
 				D8634424223FEC6600ED162E /* AppDelegate.swift in Sources */,
