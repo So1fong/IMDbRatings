@@ -11,19 +11,53 @@ import RxSwift
 
 let request: IMDbRequest = IMDbRequest()
 var myIndex = 0
+//var loadMoreFilms = false
+
+let cache = NSCache<NSString, UIImage>()
+
+extension UIImageView
+{
+    func imageFromServerURL(_ URLString: String, placeHolder: UIImage?)
+    {
+        self.image = nil
+        if let cachedImage = cache.object(forKey: NSString(string: URLString))
+        {
+            self.image = cachedImage
+            return
+        }
+        
+        if let url = URL(string: URLString)
+        {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if error != nil
+                {
+                    print("error")
+                    DispatchQueue.main.async
+                    {
+                        self.image = placeHolder
+                    }
+                    return
+                }
+                DispatchQueue.main.async
+                {
+                    if let data = data
+                    {
+                        if let resultImage = UIImage(data: data)
+                        {
+                            cache.setObject(resultImage, forKey: NSString(string: URLString))
+                            self.image = resultImage
+                        }
+                    }
+                }
+            }).resume()
+        }
+    }
+}
+
 
 class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
 {
-    func loadImage(url: URL)
-    {
-        var image = UIImage(named: "")
-        if let data = try? Data(contentsOf: url)
-        {
-            image = UIImage(data: data)
-            tempImage = image
-        }
-    }
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return topRatedFilms.count
@@ -33,26 +67,38 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topRatedCell", for: indexPath) as! TopRatedTableViewCell
         //print(topRatedFilms.count)
+        
         if topRatedFilms.count != 0
         {
             cell.descriptionLabel.text = topRatedFilms[indexPath.row].overview
-            if let url = URL(string: topRatedFilms[indexPath.row].poster)
-            {
-                DispatchQueue.main.async
-                {
-                    self.loadImage(url: url)
-                    cell.posterImageView.image = tempImage
-                }
-            }
+            cell.posterImageView.imageFromServerURL(topRatedFilms[indexPath.row].poster, placeHolder: nil)
+            tempImage = cell.posterImageView.image
             cell.titleLabel.text = String(indexPath.row+1) + ". " + topRatedFilms[indexPath.row].title
             cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[indexPath.row].rate)
         }
+        if indexPath.row == topRatedFilms.count - 1
+        {
+            print("loadMore")
+            loadMoreFilms()
+        }
         return cell
+    }
+    
+    func loadMoreFilms()
+    {
+        contentPage += 1
+        //request.topRatedRequest()
+        //print(topRatedFilms.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         myIndex = indexPath.row
+    }
+
+    private func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
     }
     
     func reloadTableView()
@@ -71,7 +117,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         request.requestDelegate = self
         topRatedTableView.delegate = self
         topRatedTableView.dataSource = self
-        request.topRatedRequest(page: 1)
+        request.topRatedRequest()
         topRatedTableView.rowHeight = 300
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorites", style: .plain, target: self, action: #selector(favoritesButtonTapped))
     }

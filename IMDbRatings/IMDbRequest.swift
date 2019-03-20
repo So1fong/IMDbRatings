@@ -13,16 +13,18 @@ protocol RequestDelegate
     func reloadTableView()
 }
 
+var contentPage = 1
+
 class IMDbRequest
 {
     var requestDelegate: RequestDelegate?
     
-    func topRatedRequest(page: Int)
+    func topRatedRequest()
     {
         let apiKey = "08aab06166b71e9d8236e125b6b285ef"
         let language = "ru-RU"
         let region = "Russia"
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKey + "&language=" + language + "&page=" + String(page) + "&region=" + region) else { return }
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKey + "&language=" + language + "&page=" + String(contentPage) + "&region=" + region) else { return }
         let session = URLSession.shared
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

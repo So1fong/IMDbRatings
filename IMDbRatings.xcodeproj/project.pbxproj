@@ -98,16 +98,16 @@
 				D866C5962242945B005FC1C0 /* Film.swift */,
 				D8634439223FFEFC00ED162E /* IMDbRequest.swift */,
 				D8634435223FFCBB00ED162E /* TopRatedVC.swift */,
-				D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */,
 				D863443B22404D6A00ED162E /* FavoritesVC.swift */,
 				D881A0492240CADE00CBFBE4 /* FilmVC.swift */,
+				D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */,
 				D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */,
+				D866C5942242577E005FC1C0 /* FavoritesTableViewCell.swift */,
 				D8634427223FEC6600ED162E /* Main.storyboard */,
 				D863442A223FEC6700ED162E /* Assets.xcassets */,
 				D863442C223FEC6700ED162E /* LaunchScreen.storyboard */,
 				D863442F223FEC6700ED162E /* Info.plist */,
 				D881A04D2240DE7300CBFBE4 /* Model.xcdatamodeld */,
-				D866C5942242577E005FC1C0 /* FavoritesTableViewCell.swift */,
 			);
 			path = IMDbRatings;
 			sourceTree = "<group>";

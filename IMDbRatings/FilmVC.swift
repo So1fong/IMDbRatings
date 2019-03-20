@@ -24,14 +24,8 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmTableViewCell
-        if let url = URL(string: topRatedFilms[myIndex].poster)
-        {
-            DispatchQueue.main.async
-            {
-                self.loadImage(url: url)
-                cell.posterImageView.image = tempImage
-            }
-        }
+        cell.posterImageView.imageFromServerURL(topRatedFilms[myIndex].poster, placeHolder: nil)
+        tempImage = cell.posterImageView.image
         cell.descriptionLabel.text = topRatedFilms[myIndex].overview
         cell.titleLabel.text = topRatedFilms[myIndex].title
         cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
@@ -66,14 +60,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             navigationItem.rightBarButtonItem = addButton
         }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-    }
-    
-    func loadImage(url: URL)
-    {
-        var image = UIImage(named: "")
-        let data = try? Data(contentsOf: url)
-        image = UIImage(data: data!)
-        tempImage = image
     }
     
     func deleteImage(fileName: String)
