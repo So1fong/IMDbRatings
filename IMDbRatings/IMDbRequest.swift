@@ -44,24 +44,19 @@ class IMDbRequest
             do
             {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-                //print(json)
                 let page = json
                 var resultDictionary: NSDictionary
                 let resultsArray = page.value(forKey: "results") as! NSArray
-                //print("RESULTS ARRAY \(resultsArray) COUNT \(resultsArray.count)")
+                let currentCount = topRatedFilms.count
                 for i in 0..<resultsArray.count
                 {
                     topRatedFilms.append(Film())
                     resultDictionary = resultsArray[i] as! NSDictionary
-                    topRatedFilms[i].poster += resultDictionary.value(forKey: "poster_path") as! String
-                    topRatedFilms[i].title = resultDictionary.value(forKey: "title") as! String
+                    topRatedFilms[i + currentCount].poster += resultDictionary.value(forKey: "poster_path") as! String
+                    topRatedFilms[i + currentCount].title = resultDictionary.value(forKey: "title") as! String
                     
-                    topRatedFilms[i].rate = resultDictionary.value(forKey: "vote_average") as! Double
-                    topRatedFilms[i].overview = resultDictionary.value(forKey: "overview") as! String
-                    //print(topRatedFilms[i].poster)
-                    //print(topRatedFilms[i].title)
-                    //print(topRatedFilms[i].rate)
-                    //print(topRatedFilms[i].overwiev)
+                    topRatedFilms[i + currentCount].rate = resultDictionary.value(forKey: "vote_average") as! Double
+                    topRatedFilms[i + currentCount].overview = resultDictionary.value(forKey: "overview") as! String
                 }
                 self.requestDelegate?.reloadTableView()
             }

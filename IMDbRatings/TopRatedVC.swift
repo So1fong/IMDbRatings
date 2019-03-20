@@ -11,7 +11,7 @@ import RxSwift
 
 let request: IMDbRequest = IMDbRequest()
 var myIndex = 0
-//var loadMoreFilms = false
+var loadMoreFilms = false
 
 let cache = NSCache<NSString, UIImage>()
 
@@ -57,7 +57,7 @@ extension UIImageView
 
 class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
 {
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return topRatedFilms.count
@@ -66,8 +66,6 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topRatedCell", for: indexPath) as! TopRatedTableViewCell
-        //print(topRatedFilms.count)
-        
         if topRatedFilms.count != 0
         {
             cell.descriptionLabel.text = topRatedFilms[indexPath.row].overview
@@ -76,29 +74,12 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
             cell.titleLabel.text = String(indexPath.row+1) + ". " + topRatedFilms[indexPath.row].title
             cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[indexPath.row].rate)
         }
-        if indexPath.row == topRatedFilms.count - 1
-        {
-            print("loadMore")
-            loadMoreFilms()
-        }
         return cell
-    }
-    
-    func loadMoreFilms()
-    {
-        contentPage += 1
-        //request.topRatedRequest()
-        //print(topRatedFilms.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         myIndex = indexPath.row
-    }
-
-    private func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        
     }
     
     func reloadTableView()
@@ -107,6 +88,38 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         {
             self.topRatedTableView.reloadData()
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let offsetY = scrollView.contentOffset.y
+        let height = scrollView.contentSize.height
+        if offsetY > height - scrollView.frame.height
+        {
+            if !loadMoreFilms
+            {
+                beginLoadMore()
+            }
+        }
+    }
+    
+    func beginLoadMore()
+    {
+        loadMoreFilms = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute:
+        {
+            contentPage += 1
+            var newFilms: [Film] = []
+            newFilms = topRatedFilms
+            topRatedFilms = []
+            request.topRatedRequest()
+            newFilms.append(contentsOf: topRatedFilms)
+            let tempArray = newFilms
+            topRatedFilms = newFilms
+            newFilms = tempArray
+            loadMoreFilms = false
+            self.topRatedTableView.reloadData()
+        })
     }
     
     @IBOutlet weak var topRatedTableView: UITableView!
