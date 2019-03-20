@@ -16,6 +16,7 @@
 		D8634438223FFE9B00ED162E /* TopRatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */; };
 		D863443A223FFEFC00ED162E /* IMDbRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634439223FFEFC00ED162E /* IMDbRequest.swift */; };
 		D863443C22404D6A00ED162E /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D863443B22404D6A00ED162E /* FavoritesVC.swift */; };
+		D866C593224229B8005FC1C0 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866C592224229B8005FC1C0 /* RealmManager.swift */; };
 		D881A04A2240CADE00CBFBE4 /* FilmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881A0492240CADE00CBFBE4 /* FilmVC.swift */; };
 		D881A04C2240D93E00CBFBE4 /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */; };
 		D881A04F2240DE7300CBFBE4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D881A04D2240DE7300CBFBE4 /* Model.xcdatamodeld */; };
@@ -35,6 +36,7 @@
 		D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedTableViewCell.swift; sourceTree = "<group>"; };
 		D8634439223FFEFC00ED162E /* IMDbRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbRequest.swift; sourceTree = "<group>"; };
 		D863443B22404D6A00ED162E /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		D866C592224229B8005FC1C0 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		D881A0492240CADE00CBFBE4 /* FilmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmVC.swift; sourceTree = "<group>"; };
 		D881A04B2240D93E00CBFBE4 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
 		D881A04E2240DE7300CBFBE4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				D8634423223FEC6600ED162E /* AppDelegate.swift */,
 				D8634439223FFEFC00ED162E /* IMDbRequest.swift */,
+				D866C592224229B8005FC1C0 /* RealmManager.swift */,
 				D8634435223FFCBB00ED162E /* TopRatedVC.swift */,
 				D8634437223FFE9B00ED162E /* TopRatedTableViewCell.swift */,
 				D863443B22404D6A00ED162E /* FavoritesVC.swift */,
@@ -237,6 +240,7 @@
 				D863443C22404D6A00ED162E /* FavoritesVC.swift in Sources */,
 				D881A04F2240DE7300CBFBE4 /* Model.xcdatamodeld in Sources */,
 				D8634424223FEC6600ED162E /* AppDelegate.swift in Sources */,
+				D866C593224229B8005FC1C0 /* RealmManager.swift in Sources */,
 				D863443A223FFEFC00ED162E /* IMDbRequest.swift in Sources */,
 				D8634438223FFE9B00ED162E /* TopRatedTableViewCell.swift in Sources */,
 				D8634436223FFCBB00ED162E /* TopRatedVC.swift in Sources */,

@@ -7,18 +7,46 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol RequestDelegate
 {
     func reloadTableView()
 }
 
-struct FilmDescription
+struct FilmDescription: RealmCollectionValue
 {
     var poster: String = "http://image.tmdb.org/t/p/w200/"
     var title: String = ""
     var rate: Double = 0.0
     var overwiev: String = ""
+}
+
+class Film: Object
+{
+     //@objc dynamic
+     @objc dynamic var poster: String = "http://image.tmdb.org/t/p/w200/"
+     @objc dynamic var title: String = ""
+     @objc dynamic var rate: Double = 0.0
+     @objc dynamic var overview: String = ""
+     //let films = List<Film>()
+    
+    func createFilm(poster: String, title: String, rate: Double, overview: String) -> Film
+    {
+        let newFilm = Film()
+        newFilm.poster = poster
+        newFilm.overview = overview
+        newFilm.rate = rate
+        newFilm.title = title
+        return newFilm
+    }
+    
+    //@objc dynamic var filmID = UUID().uuidString
+
+    //override static func primaryKey() -> String?
+    //{
+    //        return "filmID"
+    //}
 }
 
 var topRatedFilms: [FilmDescription] = [FilmDescription()]

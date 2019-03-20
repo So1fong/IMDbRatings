@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    //var realm : Realm!
+    //var filmsList: Results<Film>
+    //{
+        //get
+        //{
+            //return realm.objects(Film.self)
+        //}
+    //}
     @IBOutlet weak var filmTableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -50,12 +59,51 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         removeButton.tintColor = UIColor.red
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //realm = try! Realm()
     }
     
     @objc func addButtonTapped()
     {
         navigationItem.setRightBarButton(nil, animated: false)
         navigationItem.rightBarButtonItem = removeButton
+        //let film = filmsList[]
+        //let db = RealmManager()
+        //let favoriteFilm = Film()
+        //db.save(film: favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4"))
+        //db.fetch()
+        var favoriteFilm = Film()
+        //favoriteFilm.overview = topRatedFilms[myIndex].overwiev
+        //favoriteFilm.poster = topRatedFilms[myIndex].poster
+        //favoriteFilm.rate = topRatedFilms[myIndex].rate
+        //favoriteFilm.title = topRatedFilms[myIndex].title
+        favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
+        let realm =  try! Realm()
+        try! realm.write
+        {
+            //favoriteFilm = favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4")
+            realm.add(favoriteFilm)
+        }
+        /*
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                let realm = try! Realm()
+                let theFilm = realm.objects(Film.self).filter("age == 1").first
+                try! realm.write {
+                    favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4")
+                }
+            }
+        }
+         */
+        //favoriteFilm.filmID = "id"
+        //let key = "id"
+        //try? self.realm.write
+        //{
+            //self.realm.add(favoriteFilm)
+        //    self.realm.object(ofType: Film.self, forPrimaryKey: key)
+            
+        //}
+        
     }
     
     @objc func removeButtonTapped()
