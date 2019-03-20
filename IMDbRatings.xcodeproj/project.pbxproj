@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8DF927684AFB07D9CAD0B6DF /* Pods_IMDbRatings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B5B4947BD3E9190D894A60 /* Pods_IMDbRatings.framework */; };
+		03F6385B8CEF1061E3109C0B /* Pods_IMDbRatings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B4FD26F3E62C8FF57D7497 /* Pods_IMDbRatings.framework */; };
 		D8634424223FEC6600ED162E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634423223FEC6600ED162E /* AppDelegate.swift */; };
 		D8634429223FEC6600ED162E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8634427223FEC6600ED162E /* Main.storyboard */; };
 		D863442B223FEC6700ED162E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D863442A223FEC6700ED162E /* Assets.xcassets */; };
@@ -22,9 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2022590DAA2CF88C603BDAA4 /* Pods-IMDbRatings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDbRatings.debug.xcconfig"; path = "Target Support Files/Pods-IMDbRatings/Pods-IMDbRatings.debug.xcconfig"; sourceTree = "<group>"; };
-		41B5B4947BD3E9190D894A60 /* Pods_IMDbRatings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMDbRatings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6071634EBF4F127745719844 /* Pods-IMDbRatings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDbRatings.release.xcconfig"; path = "Target Support Files/Pods-IMDbRatings/Pods-IMDbRatings.release.xcconfig"; sourceTree = "<group>"; };
+		21B4FD26F3E62C8FF57D7497 /* Pods_IMDbRatings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMDbRatings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		898CB2647617AC815E7E3537 /* Pods-IMDbRatings.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDbRatings.release.xcconfig"; path = "Target Support Files/Pods-IMDbRatings/Pods-IMDbRatings.release.xcconfig"; sourceTree = "<group>"; };
+		BBE0D881928EBF5A4CD901B4 /* Pods-IMDbRatings.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMDbRatings.debug.xcconfig"; path = "Target Support Files/Pods-IMDbRatings/Pods-IMDbRatings.debug.xcconfig"; sourceTree = "<group>"; };
 		D8634420223FEC6600ED162E /* IMDbRatings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMDbRatings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8634423223FEC6600ED162E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8634428223FEC6600ED162E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,17 +45,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DF927684AFB07D9CAD0B6DF /* Pods_IMDbRatings.framework in Frameworks */,
+				03F6385B8CEF1061E3109C0B /* Pods_IMDbRatings.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A85C852908F8936BDEEF65DF /* Frameworks */ = {
+		C21981F6B1E4C1D1F213BEB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				41B5B4947BD3E9190D894A60 /* Pods_IMDbRatings.framework */,
+				21B4FD26F3E62C8FF57D7497 /* Pods_IMDbRatings.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -63,8 +63,8 @@
 		D83059F2ED1427BF44D9A236 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2022590DAA2CF88C603BDAA4 /* Pods-IMDbRatings.debug.xcconfig */,
-				6071634EBF4F127745719844 /* Pods-IMDbRatings.release.xcconfig */,
+				BBE0D881928EBF5A4CD901B4 /* Pods-IMDbRatings.debug.xcconfig */,
+				898CB2647617AC815E7E3537 /* Pods-IMDbRatings.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 				D8634422223FEC6600ED162E /* IMDbRatings */,
 				D8634421223FEC6600ED162E /* Products */,
 				D83059F2ED1427BF44D9A236 /* Pods */,
-				A85C852908F8936BDEEF65DF /* Frameworks */,
+				C21981F6B1E4C1D1F213BEB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,11 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D8634432223FEC6700ED162E /* Build configuration list for PBXNativeTarget "IMDbRatings" */;
 			buildPhases = (
-				052CDA86CFDA579879BFD39B /* [CP] Check Pods Manifest.lock */,
+				5F03DFE0B6968734B263F2C5 /* [CP] Check Pods Manifest.lock */,
 				D863441C223FEC6600ED162E /* Sources */,
 				D863441D223FEC6600ED162E /* Frameworks */,
 				D863441E223FEC6600ED162E /* Resources */,
-				DC557CA041D27754EDDD3AA5 /* [CP] Embed Pods Frameworks */,
+				62A1892889EFE9739864DCE2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,7 +175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		052CDA86CFDA579879BFD39B /* [CP] Check Pods Manifest.lock */ = {
+		5F03DFE0B6968734B263F2C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,7 +197,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC557CA041D27754EDDD3AA5 /* [CP] Embed Pods Frameworks */ = {
+		62A1892889EFE9739864DCE2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,7 +379,7 @@
 		};
 		D8634433223FEC6700ED162E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2022590DAA2CF88C603BDAA4 /* Pods-IMDbRatings.debug.xcconfig */;
+			baseConfigurationReference = BBE0D881928EBF5A4CD901B4 /* Pods-IMDbRatings.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -398,7 +398,7 @@
 		};
 		D8634434223FEC6700ED162E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6071634EBF4F127745719844 /* Pods-IMDbRatings.release.xcconfig */;
+			baseConfigurationReference = 898CB2647617AC815E7E3537 /* Pods-IMDbRatings.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
