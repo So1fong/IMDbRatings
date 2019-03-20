@@ -151,9 +151,11 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         // choose a name for your image
-        let fileName = topRatedFilms[myIndex].title + ".jpg"
+        let fileName = String(myIndex) + ".jpg"
+        //let fileName = topRatedFilms[myIndex].title + ".jpg"
         // create the destination file url to save your image
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        print("FULE URL = \(fileURL)")
         // get your UIImage jpeg data representation and check if the destination file url already exists
         if let data = tempImage?.jpegData(compressionQuality: 1.0),
             !FileManager.default.fileExists(atPath: fileURL.path)
@@ -199,7 +201,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //UIImagePNGRepresentation(imageToSave)?.writeToFile(filePath, atomically: true)
         //let destinationPath = documentsPath.stringByAppendingPathComponent("filename.jpg")
         //UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
-        favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
+        favoriteFilm = favoriteFilm.createFilm(poster: fileURL.relativeString, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
         if let _ = checkObjectInRealm(title: favoriteFilm.title) { }
         else
         {

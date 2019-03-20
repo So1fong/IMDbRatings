@@ -19,16 +19,30 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return favorites.count
     }
     
+    func loadImageFromPath(_ name: String) -> UIImage?
+    {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = URL(fileURLWithPath: path).appendingPathComponent(name)
+        do
+        {
+            let imageData = try Data(contentsOf: url)
+            return UIImage(data: imageData)
+        } catch
+        {
+            print("Error loading image : \(error)")
+        }
+        return nil
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritesTableViewCell
+        print(favorites)
         if favorites.count != 0
         {
             cell.descriptionLabel.text = favorites[indexPath.row].overview
-            if let url = URL(string: favorites[indexPath.row].poster)
-            {
-                cell.posterImageView.downloadedFrom(url: url)
-            }
+            let last5 = String(favorites[indexPath.row].poster.suffix(5))
+            cell.posterImageView.image = loadImageFromPath(last5)
             cell.titleLabel.text = favorites[indexPath.row].title
             cell.ratingLabel.text = "Рейтинг: " + String(favorites[indexPath.row].rate)
         }

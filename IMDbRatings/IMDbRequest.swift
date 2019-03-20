@@ -94,10 +94,10 @@ class IMDbRequest
                     
                     topRatedFilms[i].rate = resultDictionary.value(forKey: "vote_average") as! Double
                     topRatedFilms[i].overwiev = resultDictionary.value(forKey: "overview") as! String
-                    print(topRatedFilms[i].poster)
-                    print(topRatedFilms[i].title)
-                    print(topRatedFilms[i].rate)
-                    print(topRatedFilms[i].overwiev)
+                    //print(topRatedFilms[i].poster)
+                    //print(topRatedFilms[i].title)
+                    //print(topRatedFilms[i].rate)
+                    //print(topRatedFilms[i].overwiev)
                 }
                 self.requestDelegate?.reloadTableView()
                 //if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
