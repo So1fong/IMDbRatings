@@ -87,7 +87,8 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return
         }
         let filePath = "\(dirPath)/\(fileName).jpg"
-        do {
+        do
+        {
             try fileManager.removeItem(atPath: filePath)
         }
         catch let error as NSError
@@ -150,8 +151,8 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             if let filmToDelete = checkObjectInRealm(title: topRatedFilms[myIndex].title)
             {
                 realm.delete(filmToDelete)
+                deleteImage(fileName: String(myIndex))
             }
         }
-        deleteImage(fileName: String(myIndex))
     }
 }

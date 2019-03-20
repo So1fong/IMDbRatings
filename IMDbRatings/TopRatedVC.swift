@@ -17,9 +17,11 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     func loadImage(url: URL)
     {
         var image = UIImage(named: "")
-        let data = try? Data(contentsOf: url)
-        image = UIImage(data: data!)
-        tempImage = image
+        if let data = try? Data(contentsOf: url)
+        {
+            image = UIImage(data: data)
+            tempImage = image
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -30,6 +32,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topRatedCell", for: indexPath) as! TopRatedTableViewCell
+        //print(topRatedFilms.count)
         if topRatedFilms.count != 0
         {
             cell.descriptionLabel.text = topRatedFilms[indexPath.row].overwiev

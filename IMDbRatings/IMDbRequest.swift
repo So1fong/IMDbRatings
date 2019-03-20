@@ -24,12 +24,10 @@ struct FilmDescription: RealmCollectionValue
 
 class Film: Object
 {
-     //@objc dynamic
      @objc dynamic var poster: String = "http://image.tmdb.org/t/p/w200/"
      @objc dynamic var title: String = ""
      @objc dynamic var rate: Double = 0.0
      @objc dynamic var overview: String = ""
-     //let films = List<Film>()
     
     func createFilm(poster: String, title: String, rate: Double, overview: String) -> Film
     {
@@ -40,16 +38,9 @@ class Film: Object
         newFilm.title = title
         return newFilm
     }
-    
-    //@objc dynamic var filmID = UUID().uuidString
-
-    //override static func primaryKey() -> String?
-    //{
-    //        return "filmID"
-    //}
 }
 
-var topRatedFilms: [FilmDescription] = [FilmDescription()]
+var topRatedFilms: [FilmDescription] = []
 
 class IMDbRequest
 {
@@ -100,11 +91,6 @@ class IMDbRequest
                     //print(topRatedFilms[i].overwiev)
                 }
                 self.requestDelegate?.reloadTableView()
-                //if (result.contains("Bad credentials")) || (result.contains("Requires authentication"))
-                //{
-                    //self.alertControllerDelegate?.showAuthenticationAlertController()
-                //}
-
             }
             catch
             {
