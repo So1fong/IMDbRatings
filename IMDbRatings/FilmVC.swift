@@ -13,14 +13,6 @@ var savedFilms: [Film] = []
 
 class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    //var realm : Realm!
-    //var filmsList: Results<Film>
-    //{
-        //get
-        //{
-            //return realm.objects(Film.self)
-        //}
-    //}
     @IBOutlet weak var filmTableView: UITableView!
     let realm = try! Realm()
     
@@ -62,16 +54,13 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         removeButton.tintColor = UIColor.red
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
-        try! realm.write
+        if let _ = checkObjectInRealm(title: topRatedFilms[myIndex].title)
         {
-            if let _ = checkObjectInRealm(title: topRatedFilms[myIndex].title)
-            {
-                navigationItem.rightBarButtonItem = removeButton
-            }
-            else
-            {
-                navigationItem.rightBarButtonItem = addButton
-            }
+            navigationItem.rightBarButtonItem = removeButton
+        }
+        else
+        {
+            navigationItem.rightBarButtonItem = addButton
         }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
@@ -80,18 +69,8 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     {
         navigationItem.setRightBarButton(nil, animated: false)
         navigationItem.rightBarButtonItem = removeButton
-        //let film = filmsList[]
-        //let db = RealmManager()
-        //let favoriteFilm = Film()
-        //db.save(film: favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4"))
-        //db.fetch()
         var favoriteFilm = Film()
-        //favoriteFilm.overview = topRatedFilms[myIndex].overwiev
-        //favoriteFilm.poster = topRatedFilms[myIndex].poster
-        //favoriteFilm.rate = topRatedFilms[myIndex].rate
-        //favoriteFilm.title = topRatedFilms[myIndex].title
         favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
-        //let realm =  try! Realm()
         if let _ = checkObjectInRealm(title: favoriteFilm.title) { }
         else
         {
@@ -100,26 +79,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 realm.add(favoriteFilm)
             }
         }
-        /*
-        DispatchQueue(label: "background").async {
-            autoreleasepool {
-                let realm = try! Realm()
-                let theFilm = realm.objects(Film.self).filter("age == 1").first
-                try! realm.write {
-                    favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4")
-                }
-            }
-        }
-         */
-        //favoriteFilm.filmID = "id"
-        //let key = "id"
-        //try? self.realm.write
-        //{
-            //self.realm.add(favoriteFilm)
-        //    self.realm.object(ofType: Film.self, forPrimaryKey: key)
-            
-        //}
-        
     }
     
     func checkObjectInRealm(title: String) -> Film?
@@ -142,11 +101,10 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
         try! realm.write
         {
-            if let productToDelete = checkObjectInRealm(title: topRatedFilms[myIndex].title)
+            if let filmToDelete = checkObjectInRealm(title: topRatedFilms[myIndex].title)
             {
-                realm.delete(productToDelete)
+                realm.delete(filmToDelete)
             }
         }
-
     }
 }
