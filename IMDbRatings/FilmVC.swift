@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 
+var savedFilms: [Film] = []
+
 class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     //var realm : Realm!
@@ -20,6 +22,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //}
     //}
     @IBOutlet weak var filmTableView: UITableView!
+    let realm = try! Realm()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -78,11 +81,14 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //favoriteFilm.rate = topRatedFilms[myIndex].rate
         //favoriteFilm.title = topRatedFilms[myIndex].title
         favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
-        let realm =  try! Realm()
-        try! realm.write
+        //let realm =  try! Realm()
+        if let _ = checkObjectInRealm(title: favoriteFilm.title) { }
+        else
         {
-            //favoriteFilm = favoriteFilm.createFilm(poster: "1", title: "2", rate: 3, overview: "4")
-            realm.add(favoriteFilm)
+            try! realm.write
+            {
+                realm.add(favoriteFilm)
+            }
         }
         /*
         DispatchQueue(label: "background").async {
@@ -106,9 +112,31 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
+    func checkObjectInRealm(title: String) -> Film?
+    {
+        let condition = NSPredicate(format: "title=%@", title)
+        let neededFilm = realm.objects(Film.self).filter(condition).first
+        
+        if neededFilm?.title == title
+        {
+            return neededFilm
+        }
+        return nil
+    }
+    
     @objc func removeButtonTapped()
     {
         navigationItem.setRightBarButton(nil, animated: false)
         navigationItem.rightBarButtonItem = addButton
+        var favoriteFilm = Film()
+        favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
+        try! realm.write
+        {
+            if let productToDelete = checkObjectInRealm(title: topRatedFilms[myIndex].title)
+            {
+                realm.delete(productToDelete)
+            }
+        }
+
     }
 }
