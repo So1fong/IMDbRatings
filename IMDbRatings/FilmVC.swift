@@ -73,6 +73,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return
         }
         let filePath = "\(dirPath)/\(fileName).jpg"
+        print("DELETE " + filePath)
         do
         {
             try fileManager.removeItem(atPath: filePath)
@@ -92,6 +93,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileName = String(myIndex) + ".jpg"
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        print("SAVE " + fileURL.path)
         if let data = tempImage?.jpegData(compressionQuality: 1.0),
             !FileManager.default.fileExists(atPath: fileURL.path)
         {

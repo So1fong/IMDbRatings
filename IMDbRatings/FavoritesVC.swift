@@ -40,8 +40,14 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if favorites.count != 0
         {
             cell.descriptionLabel.text = favorites[indexPath.row].overview
-            let last5 = String(favorites[indexPath.row].poster.suffix(5))
-            cell.posterImageView.image = loadImageFromPath(last5)
+            let posterString = favorites[indexPath.row].poster
+            var distance = 0
+            if let index = posterString.lastIndex(of: "/")
+            {
+                distance = posterString.distance(from: index, to: posterString.endIndex) - 1
+            }
+            let imageName = posterString.suffix(distance)
+            cell.posterImageView.image = loadImageFromPath(String(imageName))
             cell.titleLabel.text = favorites[indexPath.row].title
             cell.ratingLabel.text = "Рейтинг: " + String(favorites[indexPath.row].rate)
         }
