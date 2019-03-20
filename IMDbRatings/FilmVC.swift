@@ -62,8 +62,18 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         removeButton.tintColor = UIColor.red
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
+        try! realm.write
+        {
+            if let _ = checkObjectInRealm(title: topRatedFilms[myIndex].title)
+            {
+                navigationItem.rightBarButtonItem = removeButton
+            }
+            else
+            {
+                navigationItem.rightBarButtonItem = addButton
+            }
+        }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        //realm = try! Realm()
     }
     
     @objc func addButtonTapped()
