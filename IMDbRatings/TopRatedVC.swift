@@ -11,9 +11,10 @@ import RxSwift
 
 extension UIImageView
 {
-    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit)
+    func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) -> UIImage
     {
         contentMode = mode
+        var resultImage = UIImage()
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -24,14 +25,20 @@ extension UIImageView
             DispatchQueue.main.async()
                 {
                     self.image = image
-            }
+                    resultImage = self.image!
+                }
             }.resume()
+        return resultImage
     }
     
-    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit)
+    func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) -> UIImage?
     {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
+        if let url = URL(string: link)
+        {
+            let image = downloadedFrom(url: url, contentMode: mode)
+            return image
+        }
+        return nil
     }
 }
 
@@ -51,56 +58,20 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         if topRatedFilms.count != 0
         {
             cell.descriptionLabel.text = topRatedFilms[indexPath.row].overwiev
-            //cell.descriptionLabel.num
-            //cell.descriptionLabel.sizeToFit()
-            //cell.descriptionLabel.bounds.size.height = setLabelHeight(label: cell.descriptionLabel, text: topRatedFilms[indexPath.row].overwiev)
             if let url = URL(string: topRatedFilms[indexPath.row].poster)
             {
-                cell.posterImageView.downloadedFrom(url: url)
+                cell.posterImageView.image = cell.posterImageView.downloadedFrom(url: url)
             }
             cell.titleLabel.text = String(indexPath.row+1) + ". " + topRatedFilms[indexPath.row].title
-            //cell.titleLabel.sizeToFit()
             cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[indexPath.row].rate)
         }
-        //topRatedTableView.rowHeight = UITableView.automaticDimension
-        //topRatedTableView.estimatedRowHeight = 44.0
-        
-        //var topRatedTableViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
-        //topRatedTableViewHeightConstraint.constant = topRatedTableView.contentSize.height
-        
-        //topRatedTableView.rowHeight = topRatedTableView.contentSize.height
-        //topRatedTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
         return cell
     }
-    
-    //func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
-    //{
-    //    return UITableView.automaticDimension
-    //}
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         myIndex = indexPath.row
     }
-    
-    func setLabelHeight(label: UILabel, text: String) -> CGFloat
-    {
-        //let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        //label.font = font
-        label.text = text
-        label.sizeToFit()
-        //CGRect newFrame = label.frame
-        //newFrame.size.height = expectedLabelSize.height
-        //label.frame = newFrame;
-        
-        return label.frame.height
-    }
-    
-    //let font = UIFont(name: "Helvetica", size: 20.0)
-    
-    //var height = heightForView("This is just a load of text", font: font, width: 100.0)
     
     func reloadTableView()
     {

@@ -26,12 +26,11 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmTableViewCell
         if let url = URL(string: topRatedFilms[myIndex].poster)
         {
-            cell.posterImageView.downloadedFrom(url: url)
+            cell.posterImageView.image = cell.posterImageView.downloadedFrom(url: url)
         }
         cell.descriptionLabel.text = topRatedFilms[myIndex].overwiev
         cell.titleLabel.text = topRatedFilms[myIndex].title
         cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
-        //filmTableView.rowHeight = cell.descriptionLabel.bounds.height + cell.ratingLabel.bounds.height + cell.titleLabel.bounds.height + 10
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         return cell
