@@ -76,6 +76,27 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tempImage = image
     }
     
+    func deleteImage(fileName: String)
+    {
+        let fileManager = FileManager.default
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        guard let dirPath = paths.first else
+        {
+            return
+        }
+        let filePath = "\(dirPath)/\(fileName).jpg"
+        do {
+            try fileManager.removeItem(atPath: filePath)
+        }
+        catch let error as NSError
+        {
+            print(error.debugDescription)
+        }
+        
+    }
+    
     @objc func addButtonTapped()
     {
         navigationItem.setRightBarButton(nil, animated: false)
@@ -131,5 +152,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 realm.delete(filmToDelete)
             }
         }
+        deleteImage(fileName: String(myIndex))
     }
 }
