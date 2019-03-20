@@ -7,40 +7,11 @@
 //
 
 import Foundation
-import RealmSwift
 
 protocol RequestDelegate
 {
     func reloadTableView()
 }
-
-struct FilmDescription: RealmCollectionValue
-{
-    var poster: String = "http://image.tmdb.org/t/p/w200/"
-    var title: String = ""
-    var rate: Double = 0.0
-    var overwiev: String = ""
-}
-
-class Film: Object
-{
-     @objc dynamic var poster: String = "http://image.tmdb.org/t/p/w200/"
-     @objc dynamic var title: String = ""
-     @objc dynamic var rate: Double = 0.0
-     @objc dynamic var overview: String = ""
-    
-    func createFilm(poster: String, title: String, rate: Double, overview: String) -> Film
-    {
-        let newFilm = Film()
-        newFilm.poster = poster
-        newFilm.overview = overview
-        newFilm.rate = rate
-        newFilm.title = title
-        return newFilm
-    }
-}
-
-var topRatedFilms: [FilmDescription] = []
 
 class IMDbRequest
 {
@@ -78,13 +49,13 @@ class IMDbRequest
                 //print("RESULTS ARRAY \(resultsArray) COUNT \(resultsArray.count)")
                 for i in 0..<resultsArray.count
                 {
-                    topRatedFilms.append(FilmDescription())
+                    topRatedFilms.append(Film())
                     resultDictionary = resultsArray[i] as! NSDictionary
                     topRatedFilms[i].poster += resultDictionary.value(forKey: "poster_path") as! String
                     topRatedFilms[i].title = resultDictionary.value(forKey: "title") as! String
                     
                     topRatedFilms[i].rate = resultDictionary.value(forKey: "vote_average") as! Double
-                    topRatedFilms[i].overwiev = resultDictionary.value(forKey: "overview") as! String
+                    topRatedFilms[i].overview = resultDictionary.value(forKey: "overview") as! String
                     //print(topRatedFilms[i].poster)
                     //print(topRatedFilms[i].title)
                     //print(topRatedFilms[i].rate)

@@ -32,7 +32,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 cell.posterImageView.image = tempImage
             }
         }
-        cell.descriptionLabel.text = topRatedFilms[myIndex].overwiev
+        cell.descriptionLabel.text = topRatedFilms[myIndex].overview
         cell.titleLabel.text = topRatedFilms[myIndex].title
         cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
         tableView.rowHeight = UITableView.automaticDimension
@@ -117,7 +117,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 print("error saving file:", error)
             }
         }
-        favoriteFilm = favoriteFilm.createFilm(poster: fileURL.relativeString, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
+        favoriteFilm = favoriteFilm.createFilm(poster: fileURL.relativeString, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overview)
         if let _ = checkObjectInRealm(title: favoriteFilm.title) { }
         else
         {
@@ -145,7 +145,7 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         navigationItem.setRightBarButton(nil, animated: false)
         navigationItem.rightBarButtonItem = addButton
         var favoriteFilm = Film()
-        favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overwiev)
+        favoriteFilm = favoriteFilm.createFilm(poster: topRatedFilms[myIndex].poster, title: topRatedFilms[myIndex].title, rate: topRatedFilms[myIndex].rate, overview: topRatedFilms[myIndex].overview)
         try! realm.write
         {
             if let filmToDelete = checkObjectInRealm(title: topRatedFilms[myIndex].title)

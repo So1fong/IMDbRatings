@@ -35,7 +35,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         //print(topRatedFilms.count)
         if topRatedFilms.count != 0
         {
-            cell.descriptionLabel.text = topRatedFilms[indexPath.row].overwiev
+            cell.descriptionLabel.text = topRatedFilms[indexPath.row].overview
             if let url = URL(string: topRatedFilms[indexPath.row].poster)
             {
                 DispatchQueue.main.async
