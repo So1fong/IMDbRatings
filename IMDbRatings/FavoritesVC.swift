@@ -37,7 +37,6 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritesTableViewCell
-        print(favorites)
         if favorites.count != 0
         {
             cell.descriptionLabel.text = favorites[indexPath.row].overview
