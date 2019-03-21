@@ -5,11 +5,14 @@ PODS:
   - RealmSwift (3.13.1):
     - Realm (= 3.13.1)
   - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.4.2):
     - RxAtomic (>= 4.4.2, ~> 4.4)
 
 DEPENDENCIES:
   - RealmSwift
+  - RxCocoa
   - RxSwift
 
 SPEC REPOS:
@@ -17,14 +20,16 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RxAtomic
+    - RxCocoa
     - RxSwift
 
 SPEC CHECKSUMS:
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
 
-PODFILE CHECKSUM: 45a6b49f7963587c232990fc91003d1aaf797d66
+PODFILE CHECKSUM: 3626bfdc61e2b3591af956e7da26bc18b908ad8c
 
 COCOAPODS: 1.6.1

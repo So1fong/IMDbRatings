@@ -9,16 +9,13 @@
 import UIKit
 import Foundation
 import RealmSwift
+import RxCocoa
+import RxSwift
 
-class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class FavoritesVC: UIViewController
 {
     var favorites: [Film] = []
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return favorites.count
-    }
-    
+
     func loadImageFromPath(_ name: String) -> UIImage?
     {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
@@ -34,38 +31,41 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return nil
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! FavoritesTableViewCell
-        if favorites.count != 0
-        {
-            cell.descriptionLabel.text = favorites[indexPath.row].overview
-            let posterString = favorites[indexPath.row].poster
-            var distance = 0
-            if let index = posterString.lastIndex(of: "/")
-            {
-                distance = posterString.distance(from: index, to: posterString.endIndex) - 1
-            }
-            let imageName = posterString.suffix(distance)
-            cell.posterImageView.image = loadImageFromPath(String(imageName))
-            cell.titleLabel.text = favorites[indexPath.row].title
-            cell.ratingLabel.text = "Рейтинг: " + String(favorites[indexPath.row].rate)
-        }
-        return cell
-    }
-    
     @IBOutlet weak var favoritesTableView: UITableView!
     
-    override func viewWillAppear(_ animated: Bool)
+    var favoriteFilms: Observable<[Film]>!
+    let disposeBag = DisposeBag()
+    
+    func dataBind()
     {
-        let realm = try! Realm()
-        favorites = Array(realm.objects(Film.self))
+        favoritesTableView.dataSource = nil
+        favoriteFilms.bind(to: favoritesTableView.rx.items(cellIdentifier: "favoriteCell")) { (row, film, cell) in
+            if let favoriteCell = cell as? FavoritesTableViewCell
+            {
+                if self.favorites.count != 0
+                {
+                    favoriteCell.descriptionLabel.text = film.overview
+                    let posterString = film.poster
+                    var distance = 0
+                    if let index = posterString.lastIndex(of: "/")
+                    {
+                        distance = posterString.distance(from: index, to: posterString.endIndex) - 1
+                    }
+                    let imageName = posterString.suffix(distance)
+                    favoriteCell.posterImageView.image = self.loadImageFromPath(String(imageName))
+                    favoriteCell.titleLabel.text = film.title
+                    favoriteCell.ratingLabel.text = "Рейтинг: " + String(film.rate)
+                }
+            }
+            }.disposed(by: disposeBag)
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        favoritesTableView.delegate = self
-        favoritesTableView.dataSource = self
+        let realm = try! Realm()
+        favorites = Array(realm.objects(Film.self))
+        favoriteFilms = Observable.just(self.favorites)
+        dataBind()
     }
 }

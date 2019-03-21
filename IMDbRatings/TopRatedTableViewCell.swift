@@ -10,7 +10,6 @@ import UIKit
 
 class TopRatedTableViewCell: UITableViewCell
 {
-
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!

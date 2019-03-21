@@ -7,5 +7,6 @@ target 'IMDbRatings' do
 
   # Pods for IMDbRatings
   pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'RealmSwift'
 end

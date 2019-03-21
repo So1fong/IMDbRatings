@@ -54,7 +54,6 @@ class IMDbRequest
                     resultDictionary = resultsArray[i] as! NSDictionary
                     topRatedFilms[i + currentCount].poster += resultDictionary.value(forKey: "poster_path") as! String
                     topRatedFilms[i + currentCount].title = resultDictionary.value(forKey: "title") as! String
-                    
                     topRatedFilms[i + currentCount].rate = resultDictionary.value(forKey: "vote_average") as! Double
                     topRatedFilms[i + currentCount].overview = resultDictionary.value(forKey: "overview") as! String
                 }

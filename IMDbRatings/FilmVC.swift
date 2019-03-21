@@ -8,32 +8,16 @@
 
 import UIKit
 import RealmSwift
+import RxCocoa
+import RxSwift
 
 var tempImage: UIImage?
 
-class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
+class FilmVC: UIViewController
 {
     @IBOutlet weak var filmTableView: UITableView!
     let realm = try! Realm()
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as! FilmTableViewCell
-        cell.posterImageView.imageFromServerURL(topRatedFilms[myIndex].poster, placeHolder: nil)
-        tempImage = cell.posterImageView.image
-        cell.descriptionLabel.text = topRatedFilms[myIndex].overview
-        cell.titleLabel.text = topRatedFilms[myIndex].title
-        cell.ratingLabel.text = "Рейтинг: " + String(topRatedFilms[myIndex].rate)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        return cell
-    }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return UITableView.automaticDimension
@@ -41,12 +25,29 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     var removeButton = UIBarButtonItem()
     var addButton = UIBarButtonItem()
+    var filmDescription: Observable<[Film]>!
+    let disposeBag = DisposeBag()
+    var rowNumbers = 0
+    
+    func dataBind()
+    {
+        filmDescription.bind(to: filmTableView.rx.items(cellIdentifier: "filmCell", cellType: FilmTableViewCell.self)) { (_, film: Film, cell: FilmTableViewCell) in
+            cell.posterImageView.imageFromServerURL(film.poster, placeHolder: nil)
+            tempImage = cell.posterImageView.image
+            cell.descriptionLabel.text = film.overview
+            cell.titleLabel.text = film.title
+            cell.ratingLabel.text = "Рейтинг: " + String(film.rate)
+            self.filmTableView.rowHeight = UITableView.automaticDimension
+            self.filmTableView.estimatedRowHeight = UITableView.automaticDimension
+            
+        }.disposed(by: disposeBag)
+    }
+    
+    var tempArray: [Film] = []
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        filmTableView.delegate = self
-        filmTableView.dataSource = self
         removeButton = UIBarButtonItem(title: "Remove", style: .plain, target: self, action: #selector(removeButtonTapped))
         removeButton.tintColor = UIColor.red
         addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addButtonTapped))
@@ -59,7 +60,9 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             navigationItem.rightBarButtonItem = addButton
         }
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        tempArray.append(topRatedFilms[myIndex])
+        filmDescription = Observable.just(tempArray)
+        dataBind()
     }
     
     func deleteImage(fileName: String)
@@ -73,7 +76,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return
         }
         let filePath = "\(dirPath)/\(fileName).jpg"
-        print("DELETE " + filePath)
         do
         {
             try fileManager.removeItem(atPath: filePath)
@@ -82,7 +84,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         {
             print(error.debugDescription)
         }
-        
     }
     
     @objc func addButtonTapped()
@@ -93,14 +94,12 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileName = String(myIndex) + ".jpg"
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        print("SAVE " + fileURL.path)
         if let data = tempImage?.jpegData(compressionQuality: 1.0),
             !FileManager.default.fileExists(atPath: fileURL.path)
         {
             do
             {
                 try data.write(to: fileURL)
-                print("file saved")
             } catch {
                 print("error saving file:", error)
             }
@@ -120,7 +119,6 @@ class FilmVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     {
         let condition = NSPredicate(format: "title=%@", title)
         let neededFilm = realm.objects(Film.self).filter(condition).first
-        
         if neededFilm?.title == title
         {
             return neededFilm

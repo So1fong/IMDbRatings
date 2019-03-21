@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import RxSwift
 
 let request: IMDbRequest = IMDbRequest()
 var myIndex = 0
 var loadMoreFilms = false
-
 let cache = NSCache<NSString, UIImage>()
 
 extension UIImageView
@@ -54,10 +52,8 @@ extension UIImageView
     }
 }
 
-
 class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITableViewDataSource
 {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return topRatedFilms.count
@@ -76,7 +72,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
         }
         return cell
     }
-    
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         myIndex = indexPath.row
@@ -123,7 +119,7 @@ class TopRatedVC: UIViewController, RequestDelegate, UITableViewDelegate, UITabl
     }
     
     @IBOutlet weak var topRatedTableView: UITableView!
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()

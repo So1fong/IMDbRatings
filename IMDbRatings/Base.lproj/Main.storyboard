@@ -46,7 +46,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N. Title (Year)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-nc-wdQ">
-                                                    <rect key="frame" x="191" y="11" width="169" height="24"/>
+                                                    <rect key="frame" x="190.99999999999997" y="11" width="127.33333333333334" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Rating X.X" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEC-iT-tAE">
-                                                    <rect key="frame" x="191" y="43" width="169" height="21.666666666666671"/>
+                                                    <rect key="frame" x="190.99999999999997" y="43" width="127.33333333333334" height="21.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21.666666666666671" id="aDj-px-bQg"/>
                                                     </constraints>
@@ -70,7 +70,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ihe-pN-hPd">
-                                                    <rect key="frame" x="9" y="13" width="162" height="279"/>
+                                                    <rect key="frame" x="8.9999999999999716" y="13" width="162" height="279"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="279" id="2W7-lp-xMv"/>
                                                         <constraint firstAttribute="width" constant="162" id="bpc-Xi-0JD"/>
@@ -149,7 +149,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N. Title (Year)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQS-zH-WBJ">
-                                                    <rect key="frame" x="191" y="11" width="169" height="24"/>
+                                                    <rect key="frame" x="191" y="11" width="128" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -220,9 +220,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="21Q-wN-iB8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="21Q-wN-iB8">
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteCell" rowHeight="303" id="j8Z-a7-B4q" customClass="FavoritesTableViewCell" customModule="IMDbRatings" customModuleProvider="target">
@@ -233,7 +232,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N. Title (Year)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ruK-UF-s8J">
-                                                    <rect key="frame" x="191" y="11" width="169" height="24"/>
+                                                    <rect key="frame" x="190.99999999999997" y="11" width="127.33333333333334" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -248,7 +247,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Rating X.X" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-G8-22m">
-                                                    <rect key="frame" x="191" y="43" width="169" height="21.666666666666671"/>
+                                                    <rect key="frame" x="190.99999999999997" y="43" width="127.33333333333334" height="21.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21.666666666666671" id="Ggc-AY-mxq"/>
                                                     </constraints>
@@ -257,7 +256,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-lY-nED">
-                                                    <rect key="frame" x="9" y="13" width="162" height="279"/>
+                                                    <rect key="frame" x="8.9999999999999716" y="13" width="162" height="279"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="279" id="fxB-4b-QQV"/>
                                                         <constraint firstAttribute="width" constant="162" id="kYI-js-9BD"/>
@@ -290,6 +289,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="21Q-wN-iB8" firstAttribute="leading" secondItem="out-Cl-f8x" secondAttribute="leading" id="2P4-fI-bHx"/>
+                            <constraint firstItem="out-Cl-f8x" firstAttribute="trailing" secondItem="21Q-wN-iB8" secondAttribute="trailing" id="MFb-43-etq"/>
+                            <constraint firstItem="out-Cl-f8x" firstAttribute="bottom" secondItem="21Q-wN-iB8" secondAttribute="bottom" id="Sss-rY-M2o"/>
+                            <constraint firstItem="21Q-wN-iB8" firstAttribute="top" secondItem="out-Cl-f8x" secondAttribute="top" id="gdm-gM-kEk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="out-Cl-f8x"/>
                     </view>
                     <connections>
